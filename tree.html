@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  ul, #myUL {
+    list-style-type: none;
+  }
+
+  #myUL {
+    margin: 0;
+    padding: 0;
+  }
+
+  .treeline, .treeline ul, .treeline li {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    list-style: none;
+  }
+
+  .treeline ul {
+    margin: 0 0 0 15px; /* отступ вертикальной линии */
+  }
+
+  .treeline > li:not(:only-child), .treeline li li {
+    position: relative;
+    padding: 3px 0 0 20px; /* отступ текста */
+  }
+
+  /* Стиль вертикальной линии */
+  .treeline li:not(:last-child) {
+    border-left: 1px solid #ccc;
+  }
+
+  /* Стили горизонтальной линии*/
+  .treeline li li:before, .treeline > li:not(:only-child):before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.1em;
+    height: .7em;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* Вертикальная линия последнего пункта в списка */
+  .treeline li:last-child:before {
+    width: calc(1.1em - 1px);
+    border-left: 1px solid #ccc;
+  }
+
+
+  .collapsible {
+    background-color: #a19b9b;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    /*border-radius: 10px;*/
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .collapsible:hover {
+    background-color: #d2ad61;
+  }
+
+  .active, .collapsible:hover {
+    /*background-color: #555;*/
+  }
+
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+
+  }
+
+
+  .caret {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+
+  .caret::before {
+    content: "\2295";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+
+  }
+
+  .caret-down::before {
+    content: "\2296";
+
+    display: inline-block;
+    margin-right: 6px;
+    color: red;
+  }
+
+  .nested {
+    display: none;
+  }
+
+  .active {
+    display: block;
+  }
+
+  .noactive {
+    display: block;
+  }
+
+  .openli {
+
+  }
+
+
+  .maininfo {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    padding: 0;
+    margin: 0;
+    margin-left: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+
+    /*background-color: #a4bad2;*/
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
+
+  }
+
+  .headinfo {
+    background-color: #d3e79d;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-height: 200px;
+
+  }
+
+  .fio {
+    padding: 0;
+    margin: 0;
+
+    height: 100%; /* Высота на весь слой */
+    width: 100%;
+  }
+
+  .fio a {
+    display: block; /* Ссылка как блочный элемент */
+    text-align: center; /* Выравнивание по центру */
+    height: 100%; /* Высота на весь слой */
+    width: 100%;
+  }
+
+  .imgcls {
+    margin: 5px;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+
+  }
+</style>
+
+<body>
+
+
+<ul id="myUL" class="treeline">
+  <li>
+    <span class="caret"></span>
+    <ul class="nested">
+      <li>
+        <span class="caret"></span>
+
+        <div class="maininfo">
+          <div class="headinfo">
+            <div class="imgcls">
+              <img src="img/comp.jpg" height="100" width="100"/>
+            </div>
+            <div class="fio">
+
+              <a href="https://yandex.ru" target="_blank"><h2>Иванов Иван</h2></a>
+            </div>
+
+          </div>
+          <button type="button" class="collapsible">Информация</button>
+          <div class="content">
+            <div class="blockinfo">
+              <p>Отдел: ИТ отдел</p>
+              <p>Должность: Программист</p>
+              <p>Телефон: 555464646464</p>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nested">
+          <li>
+            <div class="maininfo" href="www.ya.ru">
+              <div class="headinfo">
+                <div class="imgcls">
+                  <img src="" alt="Рисунок">
+                </div>
+                <div class="fio">
+                  <h2>Петров</h2>
+                </div>
+
+              </div>
+
+              <button type="button" class="collapsible">Информация</button>
+              <div class="content">
+
+                <div class="blockinfo">
+                  <p>Отдел: ИТ отдел</p>
+                  <p>Должность: Программист</p>
+                  <p>Телефон: 8888888</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+  </li>
+</ul>
+<script>
+
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+        this.innerHTML = "Просмотреть информацию";
+      } else {
+        content.style.display = "block";
+        this.innerHTML = "Скрыть информацию";
+
+      }
+    });
+  }
+
+
+  var toggler = document.getElementsByClassName("caret");
+  var openli = document.getElementsByClassName("openli");
+  var i;
+
+  for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function () {
+      this.parentElement.querySelector(".nested").classList.toggle("active");
+      this.classList.toggle("caret-down");
+
+    });
+  }
+
+</script>
+</body>
+</html>
